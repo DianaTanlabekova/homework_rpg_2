@@ -1,4 +1,6 @@
-package com.narxoz.rpg.combat;
+package com.narxoz.rpg.combat.fireTheme;
+
+import com.narxoz.rpg.combat.Ability;
 
 public class FlameBreath implements Ability {
     private String name;

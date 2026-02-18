@@ -1,4 +1,6 @@
-package com.narxoz.rpg.combat;
+package com.narxoz.rpg.combat.shadowTheme;
+
+import com.narxoz.rpg.combat.Ability;
 
 public class DarkNova implements Ability {
     private String name;

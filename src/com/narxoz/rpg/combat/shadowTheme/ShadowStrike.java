@@ -1,14 +1,16 @@
-package com.narxoz.rpg.combat;
+package com.narxoz.rpg.combat.shadowTheme;
 
-public class Vanish implements Ability {
+import com.narxoz.rpg.combat.Ability;
+
+public class ShadowStrike implements Ability {
     private String name;
     private int damage;
     private String description;
 
-    public Vanish(String name) {
+    public ShadowStrike(String name) {
         this.name = name;
-        this.damage = 0; 
-        this.description = "Dissolves the caster's physical form into mist, becoming an untouchable wraith that bypasses all mortal blades";
+        this.damage = 8900;
+        this.description = "A lethal strike from the void that severs the target's sight, leaving them lost in eternal darkness";
     }
 
     @Override 
@@ -28,6 +30,6 @@ public class Vanish implements Ability {
 
     @Override
     public Ability clone() {
-        return new Vanish(this.name);
+        return new ShadowStrike(this.name);
     }
 }

@@ -1,4 +1,6 @@
-package com.narxoz.rpg.combat;
+package com.narxoz.rpg.combat.iceTheme;
+
+import com.narxoz.rpg.combat.Ability;
 
 public class Blizzard implements Ability {
     private String name;

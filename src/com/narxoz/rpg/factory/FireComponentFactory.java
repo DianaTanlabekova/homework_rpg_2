@@ -1,6 +1,9 @@
 package com.narxoz.rpg.factory;
 
 import com.narxoz.rpg.combat.*;
+import com.narxoz.rpg.combat.fireTheme.FireShield;
+import com.narxoz.rpg.combat.fireTheme.FlameBreath;
+import com.narxoz.rpg.combat.fireTheme.MeteorStorm;
 import com.narxoz.rpg.loot.*;
 import java.util.ArrayList;
 import java.util.List;
