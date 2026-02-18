@@ -1,19 +1,15 @@
 package com.narxoz.rpg.combat;
 
-
-public class FrostBreath implements Ability {
+public class DarkNova implements Ability {
     private String name;
     private int damage;
     private String description;
 
-
-   
-    public FrostBreath(String name) {
+    public DarkNova(String name) {
         this.name = name;
-        this.damage = 2100;
-        this.description = "A gust of polar wind that encases the enemy's limbs in frost, making every action sluggish and heavy";
+        this.damage = 7600;
+        this.description = "Detonates a sphere of concentrated void energy, creating a shockwave of darkness that erases the existence of those caught in its wake";
     }
-
 
     @Override public String getName() {
          return name;
@@ -24,10 +20,7 @@ public class FrostBreath implements Ability {
     @Override public String getDescription() {
          return description;
          }
-
-
-    @Override
-    public Ability clone() {
-        return new FrostBreath(this.name);
-    }
+    @Override public Ability clone() {
+         return new DarkNova(this.name);
+         }
 }

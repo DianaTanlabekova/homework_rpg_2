@@ -8,7 +8,7 @@ public class FlameBreath implements Ability {
     
     public FlameBreath(String name) {
         this.name = name;
-        this.damage = 6700000;
+        this.damage = 3000;
         this.description = "Concentrates magical energy into a glowing sphere that explodes upon contact, cleansing enemies";
     }
    

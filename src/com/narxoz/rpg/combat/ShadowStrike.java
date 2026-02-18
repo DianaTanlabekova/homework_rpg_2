@@ -7,7 +7,7 @@ public class ShadowStrike implements Ability {
 
     public ShadowStrike(String name) {
         this.name = name;
-        this.damage = 89000;
+        this.damage = 8900;
         this.description = "A lethal strike from the void that severs the target's sight, leaving them lost in eternal darkness";
     }
 

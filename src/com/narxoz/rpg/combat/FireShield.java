@@ -8,7 +8,7 @@ public class FireShield implements Ability {
     
     public FireShield(String name) {
         this.name = name;
-        this.damage = 50000;
+        this.damage = 500;
         this.description = "Surrounds the caster with a wall of fire...";
     }
 
