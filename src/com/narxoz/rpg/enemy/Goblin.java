@@ -9,10 +9,10 @@ public class Goblin extends Enemy {
 
     public Goblin(String name){
         this.name = name;
-        this.health = 50;
-        this.defense = 2;
+        this.health = 49;
+        this.defense = 3;
         this.damage = 4;
-        this.speed = 6;
+        this.speed = 7;
         this.abilities = new ArrayList<>();
     }
 
@@ -29,7 +29,7 @@ public class Goblin extends Enemy {
         copy.abilities = new ArrayList<>();
 
         for (Ability ability : this.abilities) {
-            copy.abilities.add(ability.clone());  // deep copy (правильно)
+            copy.abilities.add(ability.clone());  
         }
 
         if (this.lootTable != null) {
@@ -42,8 +42,6 @@ public class Goblin extends Enemy {
         return copy;
     }
 }
-
-
     // TODO: Implement clone() for Prototype pattern
     // This is CRITICAL! You must deep copy:
     //   - The abilities list (create new list, clone each ability)

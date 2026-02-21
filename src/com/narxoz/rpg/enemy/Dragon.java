@@ -3,11 +3,11 @@ package com.narxoz.rpg.enemy;
 import com.narxoz.rpg.combat.Ability;
 import java.util.ArrayList;
 
-public class DragonBoss extends Enemy {
+public class Dragon extends Enemy {
 
-    public DragonBoss() {}
+    public Dragon() {}
 
-    public DragonBoss(String name) {
+    public Dragon(String name) {
         this.name = name;
         this.health = 900;
         this.defense = 100;
@@ -23,7 +23,7 @@ public class DragonBoss extends Enemy {
 
     @Override
     public Enemy clone() {
-        DragonBoss copy = new DragonBoss(this.name);
+        Dragon copy = new Dragon(this.name);
 
         copy.health = this.health;
         copy.damage = this.damage;
