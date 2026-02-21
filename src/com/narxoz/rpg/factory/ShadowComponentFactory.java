@@ -1,5 +1,6 @@
 package com.narxoz.rpg.factory;
 
+import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.*;
 import com.narxoz.rpg.combat.shadowTheme.DarkNova;
 import com.narxoz.rpg.combat.shadowTheme.ShadowStrike;
@@ -26,9 +27,9 @@ public class ShadowComponentFactory implements EnemyComponentFactory {
     }
 
     @Override
-    public String createAIBehavior() {
-        return "TACTICAL"; 
-    }
+   public BehaviorTypes createAIBehavior() {
+    return BehaviorTypes.TACTICAL;
+}
 }
 
 

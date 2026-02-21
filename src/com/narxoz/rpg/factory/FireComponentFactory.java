@@ -1,5 +1,6 @@
 package com.narxoz.rpg.factory;
 
+import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.*;
 import com.narxoz.rpg.combat.fireTheme.FireShield;
 import com.narxoz.rpg.combat.fireTheme.FlameBreath;
@@ -24,7 +25,7 @@ public class FireComponentFactory implements EnemyComponentFactory {
     }
 
     @Override
-    public String createAIBehavior() {
-        return "AGGRESSIVE"; 
-    }
+   public BehaviorTypes createAIBehavior() {
+    return BehaviorTypes.AGGRESSIVE;
+}
 }

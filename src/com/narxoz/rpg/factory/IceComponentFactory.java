@@ -1,5 +1,6 @@
 package com.narxoz.rpg.factory;
 
+import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.*;
 import com.narxoz.rpg.combat.iceTheme.Blizzard;
 import com.narxoz.rpg.combat.iceTheme.FrostBreath;
@@ -24,7 +25,7 @@ public class IceComponentFactory implements EnemyComponentFactory {
     }
 
     @Override
-    public String createAIBehavior() {
-        return "DEFENSIVE";
-   }
+    public BehaviorTypes createAIBehavior() {
+    return BehaviorTypes.DEFENSIVE;
+}
 }

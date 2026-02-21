@@ -1,8 +1,8 @@
 package com.narxoz.rpg.factory;
 
+import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.loot.LootTable;
-
 import java.util.List;
 
 /**
@@ -90,6 +90,6 @@ public interface EnemyComponentFactory {
      *
      * @return AI behavior description or type
      */
-    String createAIBehavior();
+    BehaviorTypes createAIBehavior();
 
 }
