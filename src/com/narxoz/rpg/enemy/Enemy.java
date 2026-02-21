@@ -1,9 +1,12 @@
 package com.narxoz.rpg.enemy;
 
+import com.narxoz.rpg.behavior.BehaviorTypes;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.loot.LootTable;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Base interface for all enemies in the RPG system.
@@ -58,8 +61,6 @@ import java.util.List;
  *   - Should clone() return a mutable or immutable copy?
  *   - How do you allow Prototype to modify cloned stats?
  */
-public interface Enemy {
-
     // TODO: Define core stat methods
     // - String getName()
     // - int getHealth()
@@ -86,4 +87,202 @@ public interface Enemy {
     // Test your clone: modify the clone's abilities.
     // Does the original change? If yes → your copy is too shallow!
 
+
+public abstract class Enemy implements Cloneable {
+
+    protected String name;
+    protected int health;
+    protected int damage;
+    protected int defense;
+    protected int speed;
+
+
+    protected EnemyType element;
+
+    protected List<Ability> abilities = new ArrayList<>();
+    protected Map<Integer, Integer> phases = new HashMap<>();
+
+    protected LootTable lootTable;
+    protected BehaviorTypes aiBehavior;
+
+    protected boolean canFly;
+    protected boolean hasBreathAttack;
+    protected int wingspan;
+
+    public Enemy() {}
+
+    protected Enemy(Enemy other) {
+        this.name = other.name;
+        this.health = other.health;
+        this.damage = other.damage;
+        this.defense = other.defense;
+        this.speed = other.speed;
+        this.element = other.element;
+
+        this.abilities = new ArrayList<>(other.abilities);
+        this.phases = new HashMap<>(other.phases);
+
+        this.lootTable = other.lootTable;
+        this.aiBehavior = other.aiBehavior;
+
+        this.canFly = other.canFly;
+        this.hasBreathAttack = other.hasBreathAttack;
+        this.wingspan = other.wingspan;
+    }
+
+    public String getName() {
+         return name;
+         }
+    public int getHealth() {
+         return health; 
+        }
+    public int getDamage() {
+         return damage;
+         }
+    public int getDefense() {
+         return defense;
+         }
+    public int getSpeed() {
+         return speed; 
+        }
+
+    public EnemyType getElement() {
+         return element;
+         }
+    public List<Ability> getAbilities() {
+         return abilities;
+         }
+    public Map<Integer, Integer> getPhases() { 
+        return phases;
+     }
+
+    public LootTable getLootTable() {
+         return lootTable;
+         }
+    public BehaviorTypes getAiBehavior() {
+         return aiBehavior;
+         }
+
+    public boolean getCanFly() {
+         return canFly; 
+        }
+    public boolean getHasBreathAttack() { 
+        return hasBreathAttack; 
+    }
+    public int getWingspan() {
+         return wingspan;
+         }
+
+    public void setName(String name) {
+         this.name = name; 
+        }
+    public void setHealth(int health) { 
+        this.health = health; 
+    }
+    public void setDamage(int damage) { 
+        this.damage = damage;
+    }
+    public void setDefense(int defense) { 
+        this.defense = defense;
+     }
+    public void setSpeed(int speed) { 
+        this.speed = speed;
+     }
+
+    public void setElement(EnemyType element) { 
+        this.element = element;
+     }
+
+    public void setAbilities(List<Ability> abilities) {
+        this.abilities = (abilities == null) ? new ArrayList<>() : abilities;
+    }
+
+    public void setLootTable(LootTable lootTable) { 
+        this.lootTable = lootTable;
+     }
+    public void setAiBehavior(BehaviorTypes aiBehavior) { 
+        this.aiBehavior = aiBehavior;
+     }
+
+    public void setCanFly(boolean canFly) { 
+        this.canFly = canFly; 
+    }
+    public void setHasBreathAttack(boolean hasBreathAttack) { 
+        this.hasBreathAttack = hasBreathAttack;
+     }
+    public void setWingspan(int wingspan) {
+         this.wingspan = wingspan; 
+        }
+
+    public void addAbility(Ability ability) {
+        if (ability != null) abilities.add(ability);
+    }
+
+    public void addPhase(int phaseNumber, int healthThreshold) {
+        phases.put(phaseNumber, healthThreshold);
+    }
+
+    public void addPhase(Map<Integer, Integer> phases) {
+        if (phases == null) return;
+        this.phases = new HashMap<>(phases);
+    }
+
+    public void multiplyStats(double multiplier) {
+        this.health = (int) (this.health * multiplier);
+        this.damage = (int) (this.damage * multiplier);
+        this.defense = (int) (this.defense * multiplier);
+        this.speed = (int) (this.speed * multiplier);
+    }
+
+    public void displayInfo() {
+
+    System.out.println("=== " + name + " ===");
+
+    System.out.println("Health: " + health +
+            " | Damage: " + damage +
+            " | Defense: " + defense +
+            " | Speed: " + speed);
+
+    System.out.println("Element: " + element);
+
+    System.out.println("AI Behavior: " + aiBehavior);
+
+    if (!abilities.isEmpty()) {
+
+        System.out.println("Abilities (" + abilities.size() + "):");
+
+        for (Ability a : abilities) {
+
+            System.out.println("  - " + a.getName() +
+                    " (Damage: " + a.getDamage() + ")");
+        }
+    }
+
+    if (!phases.isEmpty()) {
+
+        System.out.println("Boss Phases: " + phases.size());
+
+        for (Map.Entry<Integer, Integer> p : phases.entrySet()) {
+
+            System.out.println("  Phase " + p.getKey() +
+                    ": triggers at " + p.getValue() + " HP");
+        }
+    }
+
+    System.out.println("Can Fly: " + canFly +
+            " | Breath Attack: " + hasBreathAttack +
+            " | Wingspan: " + wingspan);
+
+    if (lootTable != null) {
+
+        System.out.println("Loot: " +
+                lootTable.getLootInfo());
+    }
+
+    System.out.println("==============================\n");
 }
+    @Override
+    public abstract Enemy clone();
+}
+
+
