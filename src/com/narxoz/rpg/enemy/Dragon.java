@@ -2,6 +2,7 @@ package com.narxoz.rpg.enemy;
 
 import com.narxoz.rpg.combat.Ability;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Dragon extends Enemy {
 
@@ -21,30 +22,30 @@ public class Dragon extends Enemy {
         this.abilities = new ArrayList<>();
     }
 
-    @Override
-    public Enemy clone() {
-        Dragon copy = new Dragon(this.name);
-
-        copy.health = this.health;
-        copy.damage = this.damage;
-        copy.defense = this.defense;
-        copy.speed = this.speed;
-
-        copy.canFly = this.canFly;
-        copy.hasBreathAttack = this.hasBreathAttack;
-        copy.wingspan = this.wingspan;
-
-        copy.abilities = new ArrayList<>();
-        for (Ability ability : this.abilities) {
-            copy.abilities.add(ability.clone());
-        }
-
-        if (this.lootTable != null) {
-            copy.lootTable = this.lootTable.clone();
-        }
-
-        return copy;
+@Override
+public Enemy clone() {
+    Dragon copy = new Dragon(this.name);
+    copy.health = this.health;
+    copy.damage = this.damage;
+    copy.defense = this.defense;
+    copy.speed = this.speed;
+    copy.element = this.element; 
+    copy.canFly = this.canFly;
+    copy.hasBreathAttack = this.hasBreathAttack;
+    copy.wingspan = this.wingspan;
+    copy.phases = new HashMap<>(this.phases); 
+    
+    
+    copy.abilities = new ArrayList<>();
+    for (Ability ability : this.abilities) {
+        copy.abilities.add(ability.clone());
     }
+    
+    if (this.lootTable != null) {
+        copy.lootTable = this.lootTable.clone();
+    }
+    return copy;
+}
 }
 /**
  * Example complex boss enemy — THE REASON BUILDER PATTERN EXISTS.

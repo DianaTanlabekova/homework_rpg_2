@@ -5,39 +5,51 @@ import java.util.ArrayList;
 
 public class Goblin extends Enemy {
 
-    public Goblin() {}
-
-    public Goblin(String name){
-        this.name = name;
-        this.health = 49;
-        this.defense = 3;
-        this.damage = 4;
-        this.speed = 7;
+    public Goblin() {
+       
+        this.name = "Goblin Scout";
+        this.health = 100;
+        this.damage = 15;
+        this.defense = 5;
+        this.speed = 40;
         this.abilities = new ArrayList<>();
+    }
+
+    public Goblin(String name) {
+        this();
+        this.name = name;
     }
 
     @Override
     public Enemy clone() {
-
+       
         Goblin copy = new Goblin(this.name);
-
+        
+        
         copy.health = this.health;
         copy.damage = this.damage;
         copy.defense = this.defense;
         copy.speed = this.speed;
+        
+       
+        copy.element = this.element;
+        copy.aiBehavior = this.aiBehavior;
+        
+        
+        copy.canFly = this.canFly;
+        copy.hasBreathAttack = this.hasBreathAttack;
+        copy.wingspan = this.wingspan;
 
+        
         copy.abilities = new ArrayList<>();
-
         for (Ability ability : this.abilities) {
-            copy.abilities.add(ability.clone());  
+            copy.abilities.add(ability.clone());
         }
 
+       
         if (this.lootTable != null) {
             copy.lootTable = this.lootTable.clone();
         }
-
-        copy.element = this.element;
-        copy.aiBehavior = this.aiBehavior;
 
         return copy;
     }

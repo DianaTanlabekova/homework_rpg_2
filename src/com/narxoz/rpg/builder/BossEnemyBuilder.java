@@ -9,7 +9,6 @@ import com.narxoz.rpg.loot.LootTable;
 import java.util.*;
 
 public class BossEnemyBuilder extends BasicBuilder {
-
     
     protected Map<Integer, Integer> phases = new HashMap<>();
     protected boolean canFly;
@@ -17,66 +16,73 @@ public class BossEnemyBuilder extends BasicBuilder {
     protected int wingspan;
 
     public BossEnemyBuilder() {
-       
-        this.enemy = new Dragon();
+        super(); 
     }
 
-    
     @Override
     public BossEnemyBuilder setName(String name) {
-        super.setName(name);
+        this.name = name;
         return this;
     }
 
     @Override
     public BossEnemyBuilder setHealth(int health) {
-        super.setHealth(health);
+        this.health = health;
         return this;
     }
 
     @Override
     public BossEnemyBuilder setDamage(int damage) {
-        super.setDamage(damage);
+        this.damage = damage;
         return this;
     }
 
     @Override
     public BossEnemyBuilder setDefense(int defense) {
-        super.setDefense(defense);
+        this.defense = defense;
         return this;
     }
 
     @Override
     public BossEnemyBuilder setSpeed(int speed) {
-        super.setSpeed(speed);
+        this.speed = speed;
         return this;
     }
 
     @Override
     public BossEnemyBuilder setElement(EnemyType element) {
-        super.setElement(element);
+        this.element = element;
         return this;
     }
 
     @Override
-    public BossEnemyBuilder setLootTable(LootTable lootTable) {
-        super.setLootTable(lootTable);
-        return this;
-    }
-
-    @Override
-    public BossEnemyBuilder setAI(BehaviorTypes aiBehavior) {
-        super.setAI(aiBehavior);
+    public BossEnemyBuilder addAbility(Ability ability) {
+        if (ability != null) {
+            this.abilities.add(ability);
+        }
         return this;
     }
 
     @Override
     public BossEnemyBuilder setAbilities(List<Ability> abilities) {
-        super.setAbilities(abilities);
+        if (abilities != null) {
+            this.abilities = new ArrayList<>(abilities);
+        }
         return this;
     }
 
-    
+    @Override
+    public BossEnemyBuilder setLootTable(LootTable lootTable) {
+        this.lootTable = lootTable;
+        return this;
+    }
+
+    @Override
+    public BossEnemyBuilder setAI(BehaviorTypes aiBehavior) {
+        this.aiBehavior = aiBehavior;
+        return this;
+    }
+
     public BossEnemyBuilder addPhase(int phaseNumber, int healthThreshold) {
         this.phases.put(phaseNumber, healthThreshold);
         return this;
@@ -99,17 +105,27 @@ public class BossEnemyBuilder extends BasicBuilder {
 
     @Override
     public Enemy build() {
-        
-        super.build();
-
-        
-        enemy.setCanFly(this.canFly);
-        enemy.setHasBreathAttack(this.hasBreathAttack);
-        enemy.setWingspan(this.wingspan);
-        
        
-        enemy.addPhase(new HashMap<>(this.phases));
-
-        return enemy;
+        Dragon boss = new Dragon();
+        
+        boss.setName(this.name);
+        boss.setHealth(this.health);
+        boss.setDamage(this.damage);
+        boss.setDefense(this.defense);
+        boss.setSpeed(this.speed);
+        boss.setElement(this.element);
+        boss.setAiBehavior(this.aiBehavior);
+        boss.setLootTable(this.lootTable);
+        
+        boss.setAbilities(new ArrayList<>(this.abilities));
+        
+        boss.setCanFly(this.canFly);
+        boss.setHasBreathAttack(this.hasBreathAttack);
+        boss.setWingspan(this.wingspan);
+        
+        
+        boss.addPhase(new HashMap<>(this.phases));
+        
+        return boss;
     }
 }
